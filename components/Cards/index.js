@@ -20,7 +20,29 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
-    console.log(response.data);
+    
+    var artInfo = response.data.articles;
+    console.log(artInfo);
+    
+        // let jsdat = articleComp(`${cv}`)
+        // htmlCardsCont.append(jsdat);
+        //figure out way to use temp literals maybe to make DRYER, maybe not
+        artInfo.javascript.forEach(cv => {
+            htmlCardsCont.append(articleComp(cv));
+    });
+    artInfo.bootstrap.forEach(cv => {
+        htmlCardsCont.append(articleComp(cv))
+    });
+    artInfo.technology.forEach(cv => {
+        htmlCardsCont.append(articleComp(cv))
+    });
+        artInfo.jquery.forEach(cv => {
+            htmlCardsCont.append(articleComp(cv));
+    });
+    artInfo.node.forEach(cv => {
+        htmlCardsCont.append(articleComp(cv));
+});
+
 })
 .catch(error => {
     console.log('data not returned', error)
@@ -32,7 +54,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
       authorDiv = document.createElement('div');
       imgDiv = document.createElement('div');
       imgUrl = document.createElement('img');
-      authorNameSpan = createImageBitmap('span');
+      authorNameSpan = document.createElement('span');
 
       cardDivParent.classList.add('card');
       headlineDiv.classList.add('headline');
@@ -52,4 +74,5 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         return cardDivParent;
   }
 
-  const htmlCardsCont = document.querySelector('cards-container');
+  const htmlCardsCont = document.querySelector('.cards-container');
+  console.log(htmlCardsCont);
