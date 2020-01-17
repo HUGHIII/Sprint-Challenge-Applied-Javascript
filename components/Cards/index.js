@@ -26,7 +26,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
     console.log('data not returned', error)
   })
 
-  function articleComp(){
+  function articleComp(authorData){
       const cardDivParent = document.createElement('div');
       headlineDiv = document.createElement('div');
       authorDiv = document.createElement('div');
@@ -45,5 +45,11 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
         authorDiv.append(authorNameSpan)
         imgDiv.append(imgUrl);
 
+        headlineDiv.textContent = authorData.headline;
+        imgUrl.src = authorData.authorPhoto;
+        authorNameSpan.textContent = authorData.authorName;
 
+        return cardDivParent;
   }
+
+  const htmlCardsCont = document.querySelector('cards-container');
